@@ -1,0 +1,57 @@
+{
+  "name": "skyware-launcher",
+  "version": "1.1.0",
+  "description": "Skyware Client - Custom Minecraft Launcher",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder --win --x64",
+    "publish": "electron-builder --win --x64 --publish always"
+  },
+  "build": {
+    "appId": "com.skyware.launcher",
+    "productName": "Skyware Client",
+    "copyright": "Copyright © 2026 Skyware",
+    "directories": { "output": "dist" },
+    "files": [
+      "main.js", "preload.js", "launcher-worker.js",
+      "index.html", "wiiuhome.mp3", "skyware.ico",
+      "package.json", "node_modules/**/*"
+    ],
+    "extraResources": [],
+    "win": {
+      "target": [{ "target": "nsis", "arch": ["x64"] }],
+      "icon": "skyware.ico",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "allowElevation": true,
+      "installerIcon": "skyware.ico",
+      "uninstallerIcon": "skyware.ico",
+      "installerHeaderIcon": "skyware.ico",
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Skyware Client",
+      "deleteAppDataOnUninstall": false
+    },
+    "publish": {
+      "provider": "github",
+      "owner": "SkywareSW",
+      "repo": "skyware-launcher",
+      "releaseType": "release"
+    }
+  },
+  "devDependencies": {
+    "electron": "^40.8.0",
+    "electron-builder": "^26.8.1"
+  },
+  "dependencies": {
+    "adm-zip": "^0.5.10",
+    "axios": "^1.6.0",
+    "node-fetch": "^2.7.0",
+    "discord-rpc": "^4.0.1",
+    "electron-updater": "^6.3.9"
+  }
+}
